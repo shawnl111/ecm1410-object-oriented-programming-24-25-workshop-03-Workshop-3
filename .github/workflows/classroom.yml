@@ -1,0 +1,99 @@
+name: Autograding Tests
+'on':
+  repository_dispatch: []
+  schedule:
+  - cron: '45 15 * * *'
+permissions:
+  checks: write
+  actions: read
+  contents: read
+jobs:
+  run-autograding-tests:
+    runs-on: ubuntu-latest
+    if: github.actor != 'github-classroom[bot]'
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+    - name: "./tests/test_01_DemoIncrement.sh"
+      id: tests-test_01_demoincrement-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_01_DemoIncrement.sh"
+        setup-command: ''
+        command: "./tests/test_01_DemoIncrement.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_02_AgeToGroup.sh"
+      id: tests-test_02_agetogroup-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_02_AgeToGroup.sh"
+        setup-command: ''
+        command: "./tests/test_02_AgeToGroup.sh"
+        timeout: 10
+    - name: "./tests/test_03_NumbersInSpanish.sh"
+      id: tests-test_03_numbersinspanish-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_03_NumbersInSpanish.sh"
+        setup-command: ''
+        command: "./tests/test_03_NumbersInSpanish.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_04_PrintSquares.sh"
+      id: tests-test_04_printsquares-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_04_PrintSquares.sh"
+        setup-command: ''
+        command: "./tests/test_04_PrintSquares.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_05_SumSquares.sh"
+      id: tests-test_05_sumsquares-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_05_SumSquares.sh"
+        setup-command: ''
+        command: "./tests/test_05_SumSquares.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_06_AverageSquares.sh"
+      id: tests-test_06_averagesquares-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_06_AverageSquares.sh"
+        setup-command: ''
+        command: "./tests/test_06_AverageSquares.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_07_PrintPattern1.sh"
+      id: tests-test_07_printpattern1-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_07_PrintPattern1.sh"
+        setup-command: ''
+        command: "./tests/test_07_PrintPattern1.sh"
+        timeout: 10
+        max-score: 1
+    - name: "./tests/test_08_PrintPattern2.sh"
+      id: tests-test_08_printpattern2-sh
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: "./tests/test_08_PrintPattern2.sh"
+        setup-command: ''
+        command: "./tests/test_08_PrintPattern2.sh"
+        timeout: 10
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        TESTS-TEST_01_DEMOINCREMENT-SH_RESULTS: "${{steps.tests-test_01_demoincrement-sh.outputs.result}}"
+        TESTS-TEST_02_AGETOGROUP-SH_RESULTS: "${{steps.tests-test_02_agetogroup-sh.outputs.result}}"
+        TESTS-TEST_03_NUMBERSINSPANISH-SH_RESULTS: "${{steps.tests-test_03_numbersinspanish-sh.outputs.result}}"
+        TESTS-TEST_04_PRINTSQUARES-SH_RESULTS: "${{steps.tests-test_04_printsquares-sh.outputs.result}}"
+        TESTS-TEST_05_SUMSQUARES-SH_RESULTS: "${{steps.tests-test_05_sumsquares-sh.outputs.result}}"
+        TESTS-TEST_06_AVERAGESQUARES-SH_RESULTS: "${{steps.tests-test_06_averagesquares-sh.outputs.result}}"
+        TESTS-TEST_07_PRINTPATTERN1-SH_RESULTS: "${{steps.tests-test_07_printpattern1-sh.outputs.result}}"
+        TESTS-TEST_08_PRINTPATTERN2-SH_RESULTS: "${{steps.tests-test_08_printpattern2-sh.outputs.result}}"
+      with:
+        runners: tests-test_01_demoincrement-sh,tests-test_02_agetogroup-sh,tests-test_03_numbersinspanish-sh,tests-test_04_printsquares-sh,tests-test_05_sumsquares-sh,tests-test_06_averagesquares-sh,tests-test_07_printpattern1-sh,tests-test_08_printpattern2-sh
