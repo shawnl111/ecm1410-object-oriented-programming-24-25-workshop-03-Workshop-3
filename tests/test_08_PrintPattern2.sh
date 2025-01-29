@@ -40,7 +40,7 @@ for i in "${!pairs[@]}"; do
     if [[ "$result" =~ "$j" ]]; then
         echo PrintPattern2 "${i//\\n/ }" "... ok" 
     else
-        echo PrintPattern2 "${i//\\n/ }" "... ok"
+        echo PrintPattern2 "${i//\\n/ }" "... failed"
         passed=false
     fi
 done
@@ -81,11 +81,11 @@ declare -A pairs=( ["5"]="""1234554321
 for i in "${!pairs[@]}"; do
     j=${pairs[$i]}
     var=$(printf "$i" |java PrintPattern2)
-    result=$(echo "$var" | tail -n 2)
+    result=$(echo "$var" | tail -n 10)
     if [[ "$result" =~ "$j" ]]; then
         echo PrintPattern2 "${i//\\n/ }" "... ok" 
     else
-        echo PrintPattern2 "${i//\\n/ }" "... ok"
+        echo PrintPattern2 "${i//\\n/ }" "... failed"
         passed=false
     fi
 done
