@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 passed=true
 
 javac PrintPattern2.java

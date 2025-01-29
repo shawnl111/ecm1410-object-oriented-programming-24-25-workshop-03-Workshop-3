@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 passed=true
 
 javac AverageSquares.java
