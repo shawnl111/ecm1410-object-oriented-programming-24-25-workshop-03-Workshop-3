@@ -46,7 +46,7 @@ for i in "${!pairs[@]}"; do
 done
 
 
-declare -A pairs=( ["3"]="""123321
+declare -A pairs=( ["3\n"]="""123321
 234432
 345543
 345543
@@ -67,7 +67,7 @@ for i in "${!pairs[@]}"; do
 done
 
 
-declare -A pairs=( ["5"]="""1234554321
+declare -A pairs=( ["5\n"]="""1234554321
 2345665432
 3456776543
 4567887654
