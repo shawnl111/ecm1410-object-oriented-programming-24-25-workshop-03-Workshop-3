@@ -1,8 +1,7 @@
 name: Autograding Tests
 'on':
-  repository_dispatch: []
-  schedule:
-  - cron: '45 15 * * *'
+- push
+- repository_dispatch
 permissions:
   checks: write
   actions: read
@@ -22,7 +21,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_01_DemoIncrement.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_02_AgeToGroup.sh"
       id: tests-test_02_agetogroup-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -31,6 +30,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_02_AgeToGroup.sh"
         timeout: 10
+        max-score: 10
     - name: "./tests/test_03_NumbersInSpanish.sh"
       id: tests-test_03_numbersinspanish-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -39,7 +39,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_03_NumbersInSpanish.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_04_PrintSquares.sh"
       id: tests-test_04_printsquares-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -48,7 +48,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_04_PrintSquares.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_05_SumSquares.sh"
       id: tests-test_05_sumsquares-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -57,7 +57,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_05_SumSquares.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_06_AverageSquares.sh"
       id: tests-test_06_averagesquares-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -66,7 +66,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_06_AverageSquares.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_07_PrintPattern1.sh"
       id: tests-test_07_printpattern1-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -75,7 +75,7 @@ jobs:
         setup-command: ''
         command: "./tests/test_07_PrintPattern1.sh"
         timeout: 10
-        max-score: 1
+        max-score: 10
     - name: "./tests/test_08_PrintPattern2.sh"
       id: tests-test_08_printpattern2-sh
       uses: classroom-resources/autograding-command-grader@v1
@@ -83,7 +83,8 @@ jobs:
         test-name: "./tests/test_08_PrintPattern2.sh"
         setup-command: ''
         command: "./tests/test_08_PrintPattern2.sh"
-        timeout: 10
+        timeout: 15
+        max-score: 5
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
